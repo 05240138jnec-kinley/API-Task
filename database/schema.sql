@@ -1,0 +1,19 @@
+USE defaultdb;
+
+CREATE TABLE IF NOT EXISTS tasks (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  completed BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+INSERT INTO tasks (title, completed)
+SELECT * FROM (
+  SELECT 'Set up the Node.js project', FALSE UNION ALL
+  SELECT 'Install Express and mysql2', TRUE UNION ALL
+  SELECT 'Create the database schema', TRUE
+) AS seed_data
+WHERE NOT EXISTS (SELECT 1 FROM tasks LIMIT 1);
+
+SELECT * FROM tasks;

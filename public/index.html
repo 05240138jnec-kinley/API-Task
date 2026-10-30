@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Task Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+
+  <header class="top">
+    <div>
+      <h1>Task Board</h1>
+      <p id="greeting">Loading your board…</p>
+    </div>
+    <div class="top-right">
+      <div class="progress" title="Tasks completed">
+        <svg viewBox="0 0 44 44" width="64" height="64" aria-hidden="true">
+          <circle class="track" cx="22" cy="22" r="18"></circle>
+          <circle id="ring" class="fill" cx="22" cy="22" r="18"></circle>
+        </svg>
+        <span id="pct">0%</span>
+      </div>
+      <button id="theme" class="icon" aria-label="Toggle dark mode">◐</button>
+    </div>
+  </header>
+
+  <form id="add-form" class="adder">
+    <input id="new-title" type="text" maxlength="255" autocomplete="off"
+           placeholder="Write a new task and press Enter" aria-label="New task title">
+    <button class="add" type="submit">Add task</button>
+  </form>
+
+  <div class="toolbar">
+    <div class="tabs" role="group" aria-label="Filter tasks">
+      <button data-filter="all" aria-pressed="true">All <span id="c-all">0</span></button>
+      <button data-filter="active" aria-pressed="false">Active <span id="c-active">0</span></button>
+      <button data-filter="done" aria-pressed="false">Done <span id="c-done">0</span></button>
+    </div>
+    <input id="search" type="search" placeholder="Search tasks" aria-label="Search tasks">
+  </div>
+
+  <div id="error" class="error" hidden></div>
+  <section id="board" class="board" aria-live="polite"></section>
+</div>
+
+<div id="toast" class="toast" role="status"></div>
+<script src="app.js"></script>
+</body>
+</html>
