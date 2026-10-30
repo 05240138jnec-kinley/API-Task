@@ -1,6 +1,9 @@
 // Works from http://localhost:3000 AND from Live Server (127.0.0.1:5500)
 const API = location.port === '3000' ? '/tasks' : 'http://localhost:3000/tasks';
 
+// Your name shown in the greeting
+const NAME = 'Kinley';
+
 let tasks = [];
 let filter = 'all';
 let query = '';
@@ -80,7 +83,8 @@ function updateSummary() {
   $('ring').style.strokeDashoffset = 113.1 * (1 - pct / 100);
 
   const hour = new Date().getHours();
-  const hello = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
+  const hello =
+    (hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening') + ', ' + NAME;
   $('greeting').textContent = !total
     ? `${hello}. Your board is empty.`
     : left === 0
